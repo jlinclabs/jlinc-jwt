@@ -13,20 +13,20 @@ module.exports =  {
   JlincJwtError,
 
   // Sign with HMAC
-  // signHmac(ObjectToSign, SecretString) -> JWT
-  //signHmac: require('./signHmac'),
+  // signHmac(PayloadObject, SecretString) -> JWT
+  signHmac: require('./signHmac'),
 
   // Sign with EdDSA subtype ed25519
   // signEdDsa(ObjectToSign, PublicKey, PrivateKey) -> JWT
   //signEdDsa: require('./signEdDsa'),
 
   // Sign with HMAC via compatibility function
-  // sign(ObjectToSign, SecretString) -> JWT
-  //sign: require('./signCompat'),
+  // sign(PayloadObject, SecretString) -> JWT
+  sign: require('./signCompat'),
 
   // Verify HMAC
   // verifyHmac(JWT, SecretString) -> decoded JWT
-  //verifyHmac: require('./verifyHmac'),
+  // verifyHmac: require('./verifyHmac'),
 
   // Verify EdDSA subtype ed25519
   // verifyEdDsa(JWT) -> decoded JWT
