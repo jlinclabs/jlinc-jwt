@@ -1,6 +1,6 @@
 'use strict';
 
-const jwt = require('../../jlinc-jwt');
+const jwt = require('../../../jlinc-jwt');
 const validJwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjoiU29tZSBNZXNzYWdlIiwiaWF0IjoxNTgzMDIxNDgzfQ.PORS0WePr7fNmu4tNYeR7QKo5gj9h66fNQgn_2_tSng';
 
 describe('read', function() {

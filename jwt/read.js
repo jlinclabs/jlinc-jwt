@@ -51,4 +51,4 @@ module.exports = function read(Jwt, compat) {
 
 
   return result;
-}
+};
