@@ -14,34 +14,34 @@ module.exports =  {
 
   // Sign with HMAC
   // signHmac(PayloadObject, SecretString) -> JWT
-  signHmac: require('./signHmac'),
+  signHmac: require('./jwt/signHmac'),
 
   // Sign with EdDSA subtype ed25519
   // signEdDsa(ObjectToSign, PublicKey, PrivateKey) -> JWT
-  //signEdDsa: require('./signEdDsa'),
+  //signEdDsa: require('./jwt/signEdDsa'),
 
   // Sign with HMAC via compatibility function
   // sign(PayloadObject, SecretString) -> JWT
-  sign: require('./signCompat'),
+  sign: require('./jwt/signCompat'),
 
   // Verify HMAC
   // verifyHmac(JWT, SecretString) -> decoded JWT
-  // verifyHmac: require('./verifyHmac'),
+  verifyHmac: require('./jwt/verifyHmac'),
 
   // Verify EdDSA subtype ed25519
   // verifyEdDsa(JWT) -> decoded JWT
   // N.B. public key must be in header as jwk:k
-  //verifyEdDsa: require('./verifyEdDsa'),
+  //verifyEdDsa: require('./jwt/verifyEdDsa'),
 
   // Verify assuming HMAC
   // verify(JWT, SecretString) -> decoded JWT
-  //verify: require('./verifyCompat'),
+  verify: require('./jwt/verifyCompat'),
 
   // Decode JWT
   // read(JWT) -> decoded JWT
-  read: require('./read'),
+  read: require('./jwt/read'),
 
   // Decode JWT with compatibility default options -> {complete:false}
   // decode(JWT) -> decoded JWT payload
-  decode: require('./decode'),
+  decode: require('./jwt/decode'),
 };
