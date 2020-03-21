@@ -29,9 +29,9 @@ module.exports =  {
   verifyHmac: require('./jwt/verifyHmac'),
 
   // Verify EdDSA subtype ed25519
-  // verifyEdDsa(JWT) -> decoded JWT
-  // N.B. public key must be in header as jwk:k
-  //verifyEdDsa: require('./jwt/verifyEdDsa'),
+  // verifyEdDsa(JWT[, PublicKey]) -> decoded JWT
+  // N.B. public key must be in header as jwk:k or as second arg
+  verifyEdDsa: require('./jwt/verifyEdDsa'),
 
   // Verify assuming HMAC
   // verify(JWT, SecretString) -> decoded JWT
