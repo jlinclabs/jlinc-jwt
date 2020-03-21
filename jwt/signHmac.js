@@ -6,7 +6,7 @@ const crypto = require('crypto');
 module.exports = function signHmac(payloadObject, secretString) {
   const { JlincJwtError } = this;
 
-  if (typeof payloadObject !== 'object') {
+  if (!payloadObject || typeof payloadObject !== 'object' || Array.isArray(payloadObject)) {
     throw new JlincJwtError('payloadObject must be an object');
   }
 
@@ -23,4 +23,4 @@ module.exports = function signHmac(payloadObject, secretString) {
   const Jwt = hmac.digest();
 
   return toBeSigned + '.' + b64.encode(Jwt);
-}
+};
