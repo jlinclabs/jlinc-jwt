@@ -17,8 +17,8 @@ module.exports =  {
   signHmac: require('./jwt/signHmac'),
 
   // Sign with EdDSA subtype ed25519
-  // signEdDsa(ObjectToSign, PublicKey, PrivateKey) -> JWT
-  //signEdDsa: require('./jwt/signEdDsa'),
+  // signEdDsa(PayloadObject, PublicKey, SecretKey[, DIDkeyUrl]) -> JWT
+  signEdDsa: require('./jwt/signEdDsa'),
 
   // Sign with HMAC via compatibility function
   // sign(PayloadObject, SecretString) -> JWT
