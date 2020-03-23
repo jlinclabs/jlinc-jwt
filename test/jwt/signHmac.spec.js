@@ -31,7 +31,7 @@ describe('signHmac', function() {
       }).to.throw('payloadObject must be an object');
       expect(() => {
         let unDefinedVar;
-        jwt.signHmac([], unDefinedVar);
+        jwt.signHmac(unDefinedVar);
       }).to.throw('payloadObject must be an object');
     });
   });
