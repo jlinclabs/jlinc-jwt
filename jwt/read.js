@@ -2,14 +2,14 @@
 
 const b64 = require('urlsafe-base64');
 
-module.exports = function read(Jwt, compat) {
+module.exports = function read(jsonWebToken, compat) {
   const { JlincJwtError } = this;
 
-  if (typeof Jwt !== 'string') {
+  if (typeof jsonWebToken !== 'string') {
     throw new JlincJwtError('Input must be a JWT');
   }
 
-  const sections = Jwt.split('.');
+  const sections = jsonWebToken.split('.');
   if (sections.length !== 3) {
     throw new JlincJwtError('Input must be a JWT');
   }

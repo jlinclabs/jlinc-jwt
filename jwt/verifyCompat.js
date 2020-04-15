@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function verifyCompat(JWT, SecretString) {
-  const verified = this.verifyHmac(JWT, SecretString);
+module.exports = function verifyCompat(jsonWebToken, secretString) {
+  const verified = this.verifyHmac(jsonWebToken, secretString);
   return verified.payload;
-}
+};

@@ -4,29 +4,29 @@ const b64 = require('urlsafe-base64');
 const sodium = require('sodium').api;
 const isB64 = /^[\w-]+$/;
 
-module.exports = function signEdDsa(PayloadObject, PublicKey, SecretKey, DIDkeyUrl) {
+module.exports = function signEdDsa(payloadObject, publicKey, secretKey, didKeyUrl) {
   const { JlincJwtError } = this;
 
   //input checking
-  if (!PayloadObject || Array.isArray(PayloadObject) || typeof PayloadObject !== 'object') {
-    throw new JlincJwtError('PayloadObject must be an object');
+  if (!payloadObject || Array.isArray(payloadObject) || typeof payloadObject !== 'object') {
+    throw new JlincJwtError('payloadObject must be an object');
   }
-  if (!PublicKey || !isB64.test(PublicKey)) {
-    throw new JlincJwtError('no valid PublicKey found');
+  if (!publicKey || !isB64.test(publicKey)) {
+    throw new JlincJwtError('no valid publicKey found');
   }
-  if (!SecretKey || !isB64.test(SecretKey)) {
-    throw new JlincJwtError('no valid SecretKey found');
+  if (!secretKey || !isB64.test(secretKey)) {
+    throw new JlincJwtError('no valid secretKey found');
   }
-  if (DIDkeyUrl && !/^did:jlinc:[\w-]+(#signing)?$/.test(DIDkeyUrl)) {
-    throw new JlincJwtError('DIDkeyUrl must be a JLINC DID');
+  if (didKeyUrl && !/^did:jlinc:[\w-]+(#signing)?$/.test(didKeyUrl)) {
+    throw new JlincJwtError('didKeyUrl must be a JLINC DID');
   }
 
-  const keys = {pkey: b64.decode(PublicKey), skey: b64.decode(SecretKey)};
+  const keys = {pkey: b64.decode(publicKey), skey: b64.decode(secretKey)};
   if (keys.pkey.length !== sodium.crypto_sign_PUBLICKEYBYTES) {
-    throw new JlincJwtError('PublicKey length must be crypto_sign_PUBLICKEYBYTES (32)');
+    throw new JlincJwtError('publicKey length must be crypto_sign_PUBLICKEYBYTES (32)');
   }
   if (keys.skey.length !== sodium.crypto_sign_SECRETKEYBYTES) {
-    throw new JlincJwtError('SecretKey length must be crypto_sign_SECRETKEYBYTES (64)');
+    throw new JlincJwtError('secretKey length must be crypto_sign_SECRETKEYBYTES (64)');
   }
 
   //construct the jwt
@@ -37,15 +37,15 @@ module.exports = function signEdDsa(PayloadObject, PublicKey, SecretKey, DIDkeyU
       {
         kty: 'OKP',
         crv: 'Ed25519',
-        x: PublicKey
+        x: publicKey
       }
   };
-  if (DIDkeyUrl) {
-    hdr.jwk.kid = DIDkeyUrl;
+  if (didKeyUrl) {
+    hdr.jwk.kid = didKeyUrl;
   }
 
   const header = Buffer.from(JSON.stringify(hdr), 'utf8');
-  const payload = Buffer.from(JSON.stringify(PayloadObject), 'utf8');
+  const payload = Buffer.from(JSON.stringify(payloadObject), 'utf8');
   const toBeSigned = b64.encode(header) + '.' + b64.encode(payload);
 
   try {

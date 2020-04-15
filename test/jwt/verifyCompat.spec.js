@@ -21,7 +21,7 @@ describe('verifyCompat', function() {
     it('should throw error', function(){
       expect(() => {
         jwt.verify(validJwt, 'badsecret');
-      }).to.throw('invalid signature: got bxGZmLqQKp_4XSwbX2GtpFgPdaoU_FSDK0MpYhV9DwQ but wanted oe6l1zLb-hgPXkn1q07S9Hz_T5_wHMqQcd1FkkLoQ5k');
+      }).to.throw('invalid signature');
     });
   });
 
@@ -29,7 +29,7 @@ describe('verifyCompat', function() {
     it('should throw error', function(){
       expect(() => {
         jwt.verify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjoiWWV0IEFub3RoZXIgTWVzc2FnZSIsImlhdCI6MTU4Mzg3NDgxNX0.oe6l1zLb-hgPXkn1q07S9Hz_T5_wHMqQcd1Fkkxxxxx', validSecret);
-      }).to.throw('invalid signature: got oe6l1zLb-hgPXkn1q07S9Hz_T5_wHMqQcd1FkkLoQ5k but wanted oe6l1zLb-hgPXkn1q07S9Hz_T5_wHMqQcd1Fkkxxxxx');
+      }).to.throw('invalid signature');
     });
   });
 

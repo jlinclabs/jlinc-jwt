@@ -1,5 +1,5 @@
 'use strict';
 
-module.exports = function decode(Jwt) {
-  return this.read(Jwt, true);
+module.exports = function decode(jsonWebToken) {
+  return this.read(jsonWebToken, true);
 };

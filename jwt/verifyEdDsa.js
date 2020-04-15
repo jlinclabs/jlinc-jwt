@@ -4,16 +4,16 @@ const b64 = require('urlsafe-base64');
 const sodium = require('sodium').api;
 const isB64 = /^[\w-]+$/;
 
-module.exports = function verifyEdDsa(JWT, PublicKey) {
+module.exports = function verifyEdDsa(jsonWebToken, publicKey) {
   const { JlincJwtError } = this;
 
-  const decodedJwt = this.read(JWT);
+  const decodedJwt = this.read(jsonWebToken);
   const pub = {};
   if (decodedJwt.header.alg !== 'EdDSA') {
     throw new JlincJwtError('header does not indicate EdDSA');
   }
-  if (PublicKey && isB64.test(PublicKey)) {
-    pub.key = PublicKey;
+  if (publicKey && isB64.test(publicKey)) {
+    pub.key = publicKey;
   } else if (decodedJwt.header.jwk && decodedJwt.header.jwk.x && isB64.test(decodedJwt.header.jwk.x)) {
     pub.key = decodedJwt.header.jwk.x;
   } else {

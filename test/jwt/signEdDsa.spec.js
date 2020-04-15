@@ -44,14 +44,14 @@ describe('signEdDsa', function() {
     it('should throw error', function(){
       expect(() => {
         jwt.signEdDsa(null, publicKey2, secretKey2, didUrl);
-      }).to.throw('PayloadObject must be an object');
+      }).to.throw('payloadObject must be an object');
       expect(() => {
         jwt.signEdDsa([], publicKey2, secretKey2, didUrl);
-      }).to.throw('PayloadObject must be an object');
+      }).to.throw('payloadObject must be an object');
       expect(() => {
         let unDefinedVar;
         jwt.signEdDsa(unDefinedVar, publicKey2, secretKey2, didUrl);
-      }).to.throw('PayloadObject must be an object');
+      }).to.throw('payloadObject must be an object');
     });
   });
 
@@ -59,7 +59,7 @@ describe('signEdDsa', function() {
     it('should throw error', function(){
       expect(() => {
         jwt.signEdDsa(payload);
-      }).to.throw('no valid PublicKey found');
+      }).to.throw('no valid publicKey found');
     });
   });
 
@@ -67,14 +67,14 @@ describe('signEdDsa', function() {
     it('should throw error', function(){
       expect(() => {
         jwt.signEdDsa(payload, publicKey2);
-      }).to.throw('no valid SecretKey found');
+      }).to.throw('no valid secretKey found');
     });
   });
   context('when given an invalid DID url', function(){
     it('should throw error', function(){
       expect(() => {
         jwt.signEdDsa(payload, publicKey2, secretKey2, 'foobar');
-      }).to.throw('DIDkeyUrl must be a JLINC DID');
+      }).to.throw('didKeyUrl must be a JLINC DID');
     });
   });
 
@@ -82,7 +82,7 @@ describe('signEdDsa', function() {
     it('should throw error', function(){
       expect(() => {
         jwt.signEdDsa(payload, '9oCf8KsQ6gL3JvruYguMmZ8hZKcqKuD617mniEtV', secretKey2);
-      }).to.throw('PublicKey length must be crypto_sign_PUBLICKEYBYTES (32)');
+      }).to.throw('publicKey length must be crypto_sign_PUBLICKEYBYTES (32)');
     });
   });
 
@@ -90,7 +90,7 @@ describe('signEdDsa', function() {
     it('should throw error', function(){
       expect(() => {
         jwt.signEdDsa(payload, publicKey2, 'xH3-T7Do3LnUCvUGioPabdGc8Nmj6iBhRTbRWsn-yFz2gJ_wqxDqAvcm');
-      }).to.throw('SecretKey length must be crypto_sign_SECRETKEYBYTES (64)');
+      }).to.throw('secretKey length must be crypto_sign_SECRETKEYBYTES (64)');
     });
   });
 
