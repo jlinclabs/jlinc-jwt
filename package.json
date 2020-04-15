@@ -21,14 +21,10 @@
     "urlsafe-base64": "^1.0.0"
   },
   "devDependencies": {
-    "body-parser": "^1.19.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "chai-match-pattern": "^1.1.0",
-    "errorhandler": "^1.5.1",
     "eslint": "^5.0.1",
-    "express": "^4.17.1",
-    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "sinon": "^7.2.2",
     "sinon-chai": "^3.3.0"
