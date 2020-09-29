@@ -1,6 +1,6 @@
 {
   "name": "@jlinc/jwt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "HMAC and Ed25519 JWS",
   "main": "./jwt",
   "scripts": {
