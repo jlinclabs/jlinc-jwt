@@ -2,7 +2,7 @@
   "name": "jlinc-jwt",
   "version": "1.0.0",
   "description": "HMAC and Ed25519 JWS",
-  "main": "index.js",
+  "main": "./jwt",
   "scripts": {
     "test": "./scripts/test"
   },
