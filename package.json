@@ -1,6 +1,6 @@
 {
   "name": "@jlinc/jwt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "HMAC and Ed25519 JWS",
   "main": "./jwt",
   "scripts": {
@@ -30,7 +30,7 @@
     "sinon-chai": "^3.3.0"
   },
   "files": [
-    "./index.js",
+    "./jwt/index.js",
     "./jwt/signCompat.js",
     "./jwt/verifyHmac.js",
     "./jwt/verifyEdDsa.js",
@@ -39,8 +39,5 @@
     "./jwt/read.js",
     "./jwt/decode.js",
     "./jwt/signHmac.js"
-  ],
-  "directories": {
-    "test": "test"
-  }
+  ]
 }
