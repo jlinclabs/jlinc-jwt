@@ -29,6 +29,9 @@
     "sinon": "^7.2.2",
     "sinon-chai": "^3.3.0"
   },
+  "directories": [
+    "./jwt"
+  ],
   "files": [
     "./jwt/index.js",
     "./jwt/signCompat.js",
