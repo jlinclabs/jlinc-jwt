@@ -30,17 +30,17 @@
     "sinon-chai": "^3.3.0"
   },
   "directories": [
-    "./jwt"
+    "jwt"
   ],
   "files": [
-    "./jwt/index.js",
-    "./jwt/signCompat.js",
-    "./jwt/verifyHmac.js",
-    "./jwt/verifyEdDsa.js",
-    "./jwt/verifyCompat.js",
-    "./jwt/signEdDsa.js",
-    "./jwt/read.js",
-    "./jwt/decode.js",
-    "./jwt/signHmac.js"
+    "jwt/index.js",
+    "jwt/signCompat.js",
+    "jwt/verifyHmac.js",
+    "jwt/verifyEdDsa.js",
+    "jwt/verifyCompat.js",
+    "jwt/signEdDsa.js",
+    "jwt/read.js",
+    "jwt/decode.js",
+    "jwt/signHmac.js"
   ]
 }
