@@ -1,5 +1,5 @@
 {
-  "name": "jlinc-jwt",
+  "name": "@jlinc/jwt",
   "version": "1.0.0",
   "description": "HMAC and Ed25519 JWS",
   "main": "./jwt",
@@ -39,5 +39,8 @@
     "./jwt/read.js",
     "./jwt/decode.js",
     "./jwt/signHmac.js"
-  ]
+  ],
+  "directories": {
+    "test": "test"
+  }
 }
