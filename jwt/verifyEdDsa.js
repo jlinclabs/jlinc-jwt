@@ -12,12 +12,12 @@ module.exports = function verifyEdDsa(jsonWebToken, publicKey) {
   if (decodedJwt.header.alg !== 'EdDSA') {
     throw new JlincJwtError('header does not indicate EdDSA');
   }
-  if (publicKey && isB64.test(publicKey)) {
+  if (publicKey !== undefined) { // if publicKey is supplied it must be used!
     pub.key = publicKey;
-  } else if (decodedJwt.header.jwk && decodedJwt.header.jwk.x && isB64.test(decodedJwt.header.jwk.x)) {
+  } else if (decodedJwt.header.jwk && decodedJwt.header.jwk.x && isB64.test(decodedJwt.header.jwk.x)) { // otherwise see if there is a JSON WebKey in the header
     pub.key = decodedJwt.header.jwk.x;
   } else {
-    throw new JlincJwtError('cannot find valid public key');
+    throw new JlincJwtError('cannot find a public key');
   }
 
   try {
