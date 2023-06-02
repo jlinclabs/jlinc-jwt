@@ -2,6 +2,7 @@
 
 const jwt = require('../../../jlinc-jwt');
 const payload = {message: 'YA Message'};
+const JSONpayload = '{"message":"YA Message"}';
 const validSecret = 'verysecret';
 const isJWT = /^[\w-]+\.[\w-]+\.[\w-]+$/;
 
@@ -9,6 +10,20 @@ describe('signHmac', function() {
 
   context('when given an object and secret', function(){
     const result = jwt.signHmac(payload, validSecret);
+    it('should return a verifiable JWT', function(){
+      expect(isJWT.test(result)).to.be.true;
+      const verified = jwt.verifyHmac(result, validSecret);
+      expect(verified).to.deep.include({
+        signed: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXNzYWdlIjoiWUEgTWVzc2FnZSJ9',
+        signature: 'V7R5oMDl24MNuAKeoUg0_6VdVMO-h87L5fyuwH89DkU',
+        header: { alg: 'HS256', typ: 'JWT' },
+        payload: { message: 'YA Message' }
+      });
+    });
+  });
+
+  context('when given a JSON string and secret', function(){
+    const result = jwt.signHmac(JSONpayload, validSecret);
     it('should return a verifiable JWT', function(){
       expect(isJWT.test(result)).to.be.true;
       const verified = jwt.verifyHmac(result, validSecret);
