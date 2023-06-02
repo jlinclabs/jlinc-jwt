@@ -70,13 +70,6 @@ describe('signEdDsa', function() {
       }).to.throw('no valid secretKey found');
     });
   });
-  context('when given an invalid DID url', function(){
-    it('should throw error', function(){
-      expect(() => {
-        jwt.signEdDsa(payload, publicKey2, secretKey2, 'foobar');
-      }).to.throw('didKeyUrl must be a JLINC DID');
-    });
-  });
 
   context('when given an invalid length public key', function(){
     it('should throw error', function(){

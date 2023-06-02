@@ -20,9 +20,6 @@ module.exports = function signEdDsa(payloadObject, publicKey, secretKey, didKeyU
   if (!secretKey || !isB64.test(secretKey)) {
     throw new JlincJwtError('no valid secretKey found');
   }
-  if (didKeyUrl && !/^did:jlinc:[\w-]+(#signing)?$/.test(didKeyUrl)) {
-    throw new JlincJwtError('didKeyUrl must be a JLINC DID');
-  }
 
   const keys = {pkey: b64.decode(publicKey), skey: b64.decode(secretKey)};
   if (keys.pkey.length !== sodium.crypto_sign_PUBLICKEYBYTES) {
