@@ -6,8 +6,12 @@ const crypto = require('crypto');
 module.exports = function signHmac(payloadObject, secretString) {
   const { JlincJwtError } = this;
 
+  if(typeof payloadObject === 'string') {
+    payloadObject = JSON.parse(payloadObject);
+  }
+
   if (!payloadObject || Array.isArray(payloadObject) || typeof payloadObject !== 'object') {
-    throw new JlincJwtError('payloadObject must be an object');
+    throw new JlincJwtError('payloadObject must be an object or JSON string');
   }
 
   if (typeof secretString !== 'string') {
