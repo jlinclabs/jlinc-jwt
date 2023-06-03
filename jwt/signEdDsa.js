@@ -8,17 +8,17 @@ module.exports = function signEdDsa(payloadObject, publicKey, secretKey, didKeyU
   const { JlincJwtError } = this;
 
   //input checking
+  if(typeof payloadObject === 'string') {
+    payloadObject = JSON.parse(payloadObject);
+  }
   if (!payloadObject || Array.isArray(payloadObject) || typeof payloadObject !== 'object') {
-    throw new JlincJwtError('payloadObject must be an object');
+    throw new JlincJwtError('payloadObject must be an object or JSON string');
   }
   if (!publicKey || !isB64.test(publicKey)) {
     throw new JlincJwtError('no valid publicKey found');
   }
   if (!secretKey || !isB64.test(secretKey)) {
     throw new JlincJwtError('no valid secretKey found');
-  }
-  if (didKeyUrl && !/^did:jlinc:[\w-]+(#signing)?$/.test(didKeyUrl)) {
-    throw new JlincJwtError('didKeyUrl must be a JLINC DID');
   }
 
   const keys = {pkey: b64.decode(publicKey), skey: b64.decode(secretKey)};

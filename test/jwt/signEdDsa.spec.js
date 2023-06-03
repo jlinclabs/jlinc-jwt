@@ -2,6 +2,7 @@
 
 const jwt = require('../../../jlinc-jwt');
 const payload = {message: 'Important Message'};
+const JSONpayload = '{"message":"Important Message"}';
 const publicKey = 'mWvvK3sNyWqWpKI3jEVTW0NRFkDq8Ml316_0ctFKVLQ';
 const secretKey = 'gcZgJt8_N61PgBkgf1isThUvjt7VSmoM7BNEk8SUCXGZa-8rew3JapakojeMRVNbQ1EWQOrwyXfXr_Ry0UpUtA';
 
@@ -14,6 +15,20 @@ const isJWT = /^[\w-]+\.[\w-]+\.[\w-]+$/;
 describe('signEdDsa', function() {
   context('when given an object and keys', function(){
     const result = jwt.signEdDsa(payload, publicKey, secretKey);
+    it('should return a verifiable JWT', function(){
+      expect(isJWT.test(result)).to.be.true;
+      const verified = jwt.verifyEdDsa(result);
+      expect(verified).to.deep.include({
+        signed: 'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImp3ayI6eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6Im1XdnZLM3NOeVdxV3BLSTNqRVZUVzBOUkZrRHE4TWwzMTZfMGN0RktWTFEifX0.eyJtZXNzYWdlIjoiSW1wb3J0YW50IE1lc3NhZ2UifQ',
+        signature: 'Twbw8KZrO1TdJhSRbjBW8o9V0cvp_1VzLjinigFrjm78JAu4GtYhZmVSbRaaVrwELYXsQx-5EB2duNEEd4SPAg',
+        header: { alg: 'EdDSA', typ: 'JWT', jwk: {kty: 'OKP', crv: 'Ed25519', x: `${publicKey}`}  },
+        payload: { message: 'Important Message' }
+      });
+    });
+  });
+
+  context('when given an JSON object and keys', function(){
+    const result = jwt.signEdDsa(JSONpayload, publicKey, secretKey);
     it('should return a verifiable JWT', function(){
       expect(isJWT.test(result)).to.be.true;
       const verified = jwt.verifyEdDsa(result);
@@ -68,13 +83,6 @@ describe('signEdDsa', function() {
       expect(() => {
         jwt.signEdDsa(payload, publicKey2);
       }).to.throw('no valid secretKey found');
-    });
-  });
-  context('when given an invalid DID url', function(){
-    it('should throw error', function(){
-      expect(() => {
-        jwt.signEdDsa(payload, publicKey2, secretKey2, 'foobar');
-      }).to.throw('didKeyUrl must be a JLINC DID');
     });
   });
 
